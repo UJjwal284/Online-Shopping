@@ -13,6 +13,7 @@ public class Cart {
     @OneToMany(cascade = CascadeType.ALL)
     private List<CartProduct> products;
 
+
     public List<CartProduct> getProducts() {
         return products;
     }

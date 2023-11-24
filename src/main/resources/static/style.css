@@ -1,0 +1,22 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    cursor: default;
+}
+
+tr {
+    padding: 10px;
+    border: 1px solid black;
+}
+
+
+th {
+    padding: 5px 10px
+}
+
+td {
+    padding: 5px 10px
+}
+
+.container {
+    max-width: 2000px;
+}

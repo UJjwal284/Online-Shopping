@@ -27,4 +27,8 @@ public class CartProduct {
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
+
+    public double getTotal() {
+        return Math.round(this.product.getPrice() * this.quantity * 100.0) / 100.0;
+    }
 }

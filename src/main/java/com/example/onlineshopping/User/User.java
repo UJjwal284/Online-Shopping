@@ -5,6 +5,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 public class User {
@@ -21,6 +22,24 @@ public class User {
     private String email;
 
     private Long mobile;
+
+    private Boolean enabled;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     public String getUsername() {
         return username;

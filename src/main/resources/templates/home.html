@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <title>Online Shopping</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"/>
+    <link rel="stylesheet" th:href="@{style.css}"/>
+    <script th:src="@{script.js}" defer="defer"></script>
+</head>
+<body>
+<header class="bg-dark text-white py-2 sticky-top">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="">
+                <h1 class="">Online Shopping</h1>
+            </div>
+            <div class="">
+                <a href="../cart" class="text-white" id="cart">Cart</a>
+                <a href="../account" class="text-white mx-3">Account</a>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container my-3">
+    <div class="input-group">
+        <input type="text" class="form-control mr-2" placeholder="Search Product" aria-label="Search"
+               aria-describedby="basic-addon2" id="searchInput">
+        <button class="btn btn-outline-secondary" type="button" id="searchButton">Search</button>
+    </div>
+</div>
+<table class="mx-3 mb-3">
+    <thead>
+    <tr class="text-left">
+        <th>Image</th>
+        <th th:width="200">Name</th>
+        <th>Description</th>
+        <th th:width="100">Price</th>
+        <th th:width="100">In Stock</th>
+        <th th:width="130">Action</th>
+    </tr>
+    </thead>
+    <tbody id="productTableBody">
+    <tr class="product-card" th:each="product : ${products}">
+        <td>
+            <img th:src="@{product.PNG}" alt="Product Image" width="100" height="100"/>
+        </td>
+        <td><strong th:text="${product.name}">Product Name</strong></td>
+        <td class="description" th:text="${product.description}">Product Description</td>
+        <td th:text="${product.price}">Product Price</td>
+        <td th:text="${product.inStock}">Product In-Stock</td>
+        <td>
+            <button class="btn btn-outline-warning addToCart" th:id="${product.id}">Add to Cart</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+        crossorigin="anonymous"></script>
+</body>
+</html>
