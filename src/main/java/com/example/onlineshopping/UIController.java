@@ -25,11 +25,6 @@ public class UIController {
         this.orderService = orderService;
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
-    }
-
     @GetMapping("/")
     public String home(Model model) {
         List<Product> product = productService.getAllProducts();
