@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 @Entity
 public class User {
@@ -18,7 +17,6 @@ public class User {
 
     private String password;
     @NotBlank
-
     private String email;
 
     private Long mobile;
