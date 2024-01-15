@@ -1,15 +1,8 @@
 pipeline {
     agent any
-
     tools {
         maven 'M3'
       }
-
-    environment{
-        scannerHome=tool name: "sonar-scanner"
-        SONAR_PROJECT_KEY = env.BUILD_DISPLAY_NAME.replaceAll('[^a-zA-Z0-9]', '')
-      }
-
     stages {
         stage('Checkout') {
             steps {
@@ -30,12 +23,13 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
+            environment {
+                scannerHome=tool name: "sonar-scanner"
+            }
                     steps {
-                        script {
-                                        withEnv(["SONAR_PROJECT_KEY=${SONAR_PROJECT_KEY}"]) {
-                                            sh "${scannerHome}/bin/sonar-scanner"
-                                        }
-                                    }
+                        withSonarQubeEnv('SonarQubeServer') {
+                            sh "${scannerHome}/bin/sonar-scanner"
+                        }
                     }
                 }
     }
