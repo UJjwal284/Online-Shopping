@@ -22,7 +22,7 @@ pipeline {
 
     post {
         success {
-            echo 'Build successful. Deploying...'
+            echo 'Build successful.'
         }
         
         failure {
