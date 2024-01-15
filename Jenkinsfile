@@ -8,14 +8,9 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                script {
-                            def branchName = env.GIT_BRANCH ?: 'main'
-                                checkout([$class: 'GitSCM',
-                                          branches: [[name: "${branchName}"]],
-                                          doGenerateSubmoduleConfigurations: false,
-                                          extensions: [[$class: 'CleanBeforeCheckout']],
-                                          userRemoteConfigs: [[url: 'https://github.com/yourusername/your-repo.git']]])
-                    }
+                script {        
+                    def branchName = env.GIT_BRANCH ?: 'main'
+                    checkout scmGit(branches: [[name: '${branchName}']], extensions: [], userRemoteConfigs: [[credentialsId: 'b37c044f-3483-42b4-ab8b-dbaae1deb520', url: 'https://github.com/UJjwal284/Online-Shopping.git']])
             }
         }
         
