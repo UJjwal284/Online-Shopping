@@ -8,7 +8,14 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/yourusername/your-spring-boot-project.git'
+                script {
+                                def branchName = env.GIT_BRANCH ?: 'main'
+                                checkout([$class: 'GitSCM',
+                                          branches: [[name: "${branchName}"]],
+                                          doGenerateSubmoduleConfigurations: false,
+                                          extensions: [[$class: 'CleanBeforeCheckout']],
+                                          userRemoteConfigs: [[url: 'https://github.com/yourusername/your-repo.git']]])
+                    }
             }
         }
         
