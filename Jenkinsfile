@@ -3,6 +3,10 @@ pipeline {
     tools {
         maven 'M3'
       }
+    environment{
+        scannerHome=tool name: "sonar-scanner"
+        SONAR_PROJECT_KEY = env.BUILD_DISPLAY_NAME.replaceAll('[^a-zA-Z0-9]', '')
+      }
     stages {
         stage('Checkout') {
             steps {
@@ -23,9 +27,6 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-            environment {
-                scannerHome=tool name: "sonar-scanner"
-            }
                     steps {
                         withSonarQubeEnv('SonarQubeServer') {
                             sh "${scannerHome}/bin/sonar-scanner"
