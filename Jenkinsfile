@@ -23,24 +23,28 @@ pipeline {
         }
 
         stage('SonarQube Analysis') {
-        environment {
-                        scannerHome = tool name: 'sonar-scanner'
-                    }
+            environment {
+                scannerHome=tool name: "sonar-scanner"
+            }
                     steps {
-                        script {
-                            withSonarQubeEnv('SonarQubeServer') {
-                                sh "${scannerHome}/bin/sonar-scanner"
-                            }
-
-                            timeout(time: 1, unit: 'HOURS') {
-                                def qg = waitForQualityGate()
-                                if (qg.status != 'OK') {
-                                    error "SonarQube Quality Gate failed: ${qg.status}"
-                                }
-                            }
+                        withSonarQubeEnv('SonarQubeServer') {
+                            sh "${scannerHome}/bin/sonar-scanner"
                         }
                     }
-            }
+                }
+
+        stage('Quality Gate') {
+                                  steps {
+                                      timeout(time: 1, unit: 'HOURS') {
+                                          script {
+                                              def qg = waitForQualityGate()
+                                              if (qg.status != 'OK') {
+                                                  error "SonarQube Quality Gate failed: ${qg.status}"
+                                              }
+                                          }
+                                      }
+                                  }
+                              }
     }
 
     post {
