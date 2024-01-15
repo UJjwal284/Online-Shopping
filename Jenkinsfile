@@ -9,13 +9,13 @@ pipeline {
         
         stage('Build') {
             steps {
-                sh "${MAVEN_HOME}/bin/mvn clean install"
+                sh "mvn clean install"
             }
         }
         
         stage('Test') {
             steps {
-                sh "${MAVEN_HOME}/bin/mvn test"
+                sh "mvn test"
             }
         }
     }
