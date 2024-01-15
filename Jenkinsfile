@@ -4,6 +4,7 @@ pipeline {
         MAVEN_HOME = tool 'Maven'
         JAVA_HOME = tool 'Java'
     }
+    
     stages {
         stage('Checkout') {
             steps {
