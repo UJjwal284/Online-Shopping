@@ -1,7 +1,7 @@
 pipeline {
     agent any
     triggers {
-        githubPush()
+        pollSCM('')
       }
     environment {
         MAVEN_HOME = tool 'Maven'
