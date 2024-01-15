@@ -32,6 +32,7 @@ pipeline {
         success {
             echo 'Build successful. Deploying...'
         }
+        
         failure {
             echo 'Build failed. Please check the build logs for details.'
         }
