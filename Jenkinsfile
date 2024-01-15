@@ -24,7 +24,7 @@ pipeline {
 
         stage('SonarQube Analysis') {
             environment {
-                scannerHome=tool name: "sonar-scanner"
+                scannerHome=tool name: "Sonar S"
             }
                     steps {
                         withSonarQubeEnv('SonarQubeServer') {
@@ -32,6 +32,19 @@ pipeline {
                         }
                     }
                 }
+
+              stage('Quality Gate') {
+                          steps {
+                              timeout(time: 1, unit: 'HOURS') {
+                                  script {
+                                      def qg = waitForQualityGate()
+                                      if (qg.status != 'OK') {
+                                          error "SonarQube Quality Gate failed: ${qg.status}"
+                                      }
+                                  }
+                              }
+                          }
+                      }
     }
 
     post {
