@@ -1,8 +1,6 @@
 pipeline {
     agent any
-    triggers {
-        pollSCM('')
-      }
+    
     environment {
         MAVEN_HOME = tool 'Maven'
         JAVA_HOME = tool 'Java'
