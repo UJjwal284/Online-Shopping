@@ -11,6 +11,7 @@ pipeline {
                 git 'https://github.com/yourusername/your-spring-boot-project.git'
             }
         }
+        
         stage('Build') {
             steps {
                 sh "${MAVEN_HOME}/bin/mvn clean install"
