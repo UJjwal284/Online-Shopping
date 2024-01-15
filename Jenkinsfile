@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    triggers {
+        githubPush()
+      }
     environment {
         MAVEN_HOME = tool 'Maven'
         JAVA_HOME = tool 'Java'
