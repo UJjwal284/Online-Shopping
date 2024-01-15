@@ -5,7 +5,6 @@ pipeline {
         JAVA_HOME = tool 'Java'
     }
 
-    
     stages {
         stage('Checkout') {
             steps {
