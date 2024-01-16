@@ -34,6 +34,8 @@ pipeline {
                 }
 
         stage('Deploy to Docker') {
+            def dockerHome = tool 'myDocker'
+            env.PATH = "${dockerHome}/bin:${env.PATH}"
                     steps {
                         script {
                             sh "docker build -t online-shopping ."
