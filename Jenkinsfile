@@ -32,6 +32,15 @@ pipeline {
                         }
                     }
                 }
+
+        stage('Deploy to Docker') {
+                    steps {
+                        script {
+                            sh "docker build -t online-shopping ."
+                            sh "docker run -p 8090:8080 -d online-shopping"
+                        }
+                    }
+                }
     }
 
     post {
