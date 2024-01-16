@@ -34,15 +34,15 @@ pipeline {
                 }
 
         stage('Deploy to Docker') {
-            def dockerHome = tool 'myDocker'
-            env.PATH = "${dockerHome}/bin:${env.PATH}"
-                    steps {
-                        script {
-                            sh "docker build -t online-shopping ."
-                            sh "docker run -p 8090:8080 -d online-shopping"
-                        }
-                    }
+            steps {
+                script {
+                    def dockerHome = tool 'myDocker'
+                    env.PATH = "${dockerHome}/bin:${env.PATH}"
+                    sh "docker build -t online-shopping ."
+                    sh "docker run -p 8090:8080 -d online-shopping"
                 }
+            }
+        }
     }
 
     post {
